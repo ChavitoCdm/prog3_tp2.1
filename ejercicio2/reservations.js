@@ -5,7 +5,7 @@ class Customer {
     this.email = email;
   }
   get info() {
-    return `${this.name} - ${this.email}`;
+    return `${this.name} (${this.email})`;
   }
   
 }
@@ -19,17 +19,17 @@ class Reservation {
     
   }
   get info() {
-    return `Fecha de reserva : ${this.date.toLocaleString()} - Invitados: ${this.guests} - Cliente: ${this.customer.info} `;
+    return `Fecha y Hora de reserva : ${this.date.toLocaleString()} - Comensales: ${this.guests} - Cliente: ${this.customer.info} `;
     
   }
-  static validateReservation(reservationData) {
-    const { date, guests } = reservationData;
+  static validateReservation(date,guests) {
+    const reservationDate = new Date(date);
     const currentDate = new Date();
-    if (new Date(date) < currentDate || guests <= 0) {
-      return false;
+    if (reservationDate.getTime() <= currentDate.getTime() || guests <= 0) {
+        return false;
     }
     return true;
-  }
+}
   
 }
 
